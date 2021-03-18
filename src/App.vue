@@ -4,10 +4,13 @@
       <v-toolbar-title>PostApp</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text>
-        <router-link :to="{ name: 'home' }">home</router-link>
+        <router-link :to="{ name: 'event-list' }">LIST</router-link>
       </v-btn>
       <v-btn text>
-        <router-link :to="{ name: 'about' }">about</router-link>
+        <router-link :to="{ name: 'event-show' }">SHOW</router-link>
+      </v-btn>
+      <v-btn text>
+        <router-link :to="{ name: 'event-create' }">CREATE</router-link>
       </v-btn>
     </v-app-bar>
 
