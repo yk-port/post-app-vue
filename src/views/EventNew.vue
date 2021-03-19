@@ -1,5 +1,5 @@
 <template>
-  <div>CREATE</div>
+  <div>NEW</div>
 </template>
 
 <script>

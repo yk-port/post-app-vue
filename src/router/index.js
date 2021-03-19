@@ -2,25 +2,35 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import EventList from '@/views/EventList.vue'
 import EventShow from '@/views/EventShow.vue'
-import EventCreate from '@/views/EventCreate.vue'
+import EventNew from '@/views/EventNew.vue'
+import User from '@/views/User.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'event-list',
+    name: 'events',
     component: EventList
   },
   {
-    path: '/event-show',
-    name: 'event-show',
-    component: EventShow
+    path: '/events/:id',
+    name: 'events-show',
+    component: EventShow,
+    // idをpropsとして渡す処理
+    props: true
   },
   {
-    path: '/event/create',
-    name: 'event-create',
-    component: EventCreate
+    path: '/events/new',
+    name: 'events-new',
+    component: EventNew
+  },
+  {
+    path: '/users/:username',
+    name: 'mypage',
+    component: User,
+    // 動的にpathを指定したい時は↓の記述をすると、動的に表示されるコンポーネントでpropsとして値を受け取れる
+    props: true
   }
 ]
 

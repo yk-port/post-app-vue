@@ -1,9 +1,11 @@
 <template>
-  <div>SHOW</div>
+  <div>{{ id }}'s SHOW PAGE</div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['id']
+}
 </script>
 
 <style lang="scss" scoped></style>
