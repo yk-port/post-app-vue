@@ -37,6 +37,9 @@ export default new Vuex.Store({
     },
     SET_EVENTS_TOTAL(state, eventsTotal) {
       state.eventsTotal = eventsTotal
+    },
+    SET_EVENT(state, event) {
+      state.event = event
     }
   },
 
@@ -55,6 +58,21 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(error)
         })
+    },
+    fetchEvent({ commit }, id) {
+      const event = this.getters.getEventById(id)
+
+      if (event) {
+        commit('SET_EVENT', event)
+      } else {
+        return EventService.getEvent(id)
+          .then(response => {
+            commit('SET_EVENT', response.data)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
     }
   },
 
@@ -66,7 +84,7 @@ export default new Vuex.Store({
     },
     // getEventByIdが呼び出されたら、選択されたidに該当するeventを取得する
     getEventById: state => id => {
-      return state.todos.find(event => event.id === id)
+      return state.events.find(event => event.id === id)
     }
   }
 })

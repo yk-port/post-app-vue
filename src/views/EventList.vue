@@ -8,7 +8,7 @@
       >
         Prev Page</router-link
       >
-      <spam v-if="isLastPage"> | </spam>
+      <span v-if="isLastPage"> | </span>
     </span>
     <span v-if="isLastPage">
       <router-link
