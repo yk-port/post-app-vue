@@ -7,7 +7,11 @@
           {{ event.title }}
         </v-list-item-title>
         <v-list-item-subtitle>
-          {{ event.attendees.length }} attending
+          <AttendIcon>
+            <span class="attending"
+              >{{ event.attendees.length }} attending</span
+            >
+          </AttendIcon>
         </v-list-item-subtitle>
       </v-list-item-content>
 
@@ -26,9 +30,11 @@
 </template>
 
 <script>
+import AttendIcon from '@/components/AttendIcon.vue'
 import GoodIcon from '@/components/GoodIcon.vue'
 export default {
   components: {
+    AttendIcon,
     GoodIcon
   },
   data() {
@@ -47,3 +53,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.attending {
+  vertical-align: middle;
+}
+</style>
