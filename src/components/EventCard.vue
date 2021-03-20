@@ -19,7 +19,7 @@
     </v-list-item>
 
     <v-card-actions>
-      <router-link :to="{ name: 'events-show', params: { id: '1' } }">
+      <router-link :to="{ name: 'events-show', params: { id: event.id } }">
         <v-btn outlined rounded text>
           more
         </v-btn>
@@ -33,23 +33,15 @@
 import AttendIcon from '@/components/AttendIcon.vue'
 import GoodIcon from '@/components/GoodIcon.vue'
 export default {
+  props: {
+    event: {
+      type: Object,
+      require: true
+    }
+  },
   components: {
     AttendIcon,
     GoodIcon
-  },
-  data() {
-    return {
-      event: {
-        id: 1,
-        title: 'Beach Cleanup',
-        date: 'Tue May 15 2018',
-        time: '6:00',
-        attendees: [
-          { id: 'abc123', name: 'Adam Jahr' },
-          { id: 'def456', name: 'Gregg Pollack' }
-        ]
-      }
-    }
   }
 }
 </script>
