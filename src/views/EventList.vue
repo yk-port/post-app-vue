@@ -1,28 +1,16 @@
 <template>
   <div>
-    <p>LIST</p>
-    <ul>
-      <li>
-        <router-link :to="{ name: 'events-show', params: { id: '1' } }"
-          >1</router-link
-        >
-      </li>
-      <li>
-        <router-link :to="{ name: 'events-show', params: { id: '2' } }"
-          >2</router-link
-        >
-      </li>
-      <li>
-        <router-link :to="{ name: 'events-show', params: { id: '3' } }"
-          >3</router-link
-        >
-      </li>
-    </ul>
+    <EventCard />
   </div>
 </template>
 
 <script>
-export default {}
+import EventCard from '@/components/EventCard.vue'
+export default {
+  components: {
+    EventCard
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

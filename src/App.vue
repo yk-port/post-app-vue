@@ -22,12 +22,10 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  name: 'App',
+<script></script>
 
-  data: () => ({
-    //
-  })
+<style lang="scss">
+a {
+  text-decoration: none;
 }
-</script>
+</style>
