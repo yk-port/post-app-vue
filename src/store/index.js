@@ -5,11 +5,33 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: { id: 'abc123', name: 'Adam Jahr' },
+    categories: [
+      'sustainability',
+      'nature',
+      'animal welfare',
+      'housing',
+      'education',
+      'food',
+      'community'
+    ],
+    todos: [
+      { id: 1, text: '...', done: true },
+      { id: 2, text: '...', done: false },
+      { id: 3, text: '...', done: true },
+      { id: 4, text: '...', done: false }
+    ]
   },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
+  mutations: {},
+  actions: {},
+  modules: {},
+  getters: {
+    categoryLength: state => {
+      return state.categories.length
+    },
+    // getEventByIdが呼び出されたら、選択されたidに該当するeventを取得する
+    getEventById: state => id => {
+      return state.todos.find(event => event.id === id)
+    }
   }
 })
