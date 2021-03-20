@@ -8,9 +8,9 @@
         </v-list-item-title>
         <v-list-item-subtitle>
           <AttendIcon>
-            <span class="attending"
-              >{{ event.attendees.length }} attending</span
-            >
+            <span class="attending">
+              {{ event.attendees.length }} attending
+            </span>
           </AttendIcon>
         </v-list-item-subtitle>
       </v-list-item-content>
