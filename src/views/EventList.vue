@@ -6,26 +6,17 @@
 
 <script>
 import EventCard from '@/components/EventCard.vue'
-import EventService from '@/services/EventService'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     EventCard
   },
-  data() {
-    return {
-      events: []
-    }
-  },
   created() {
-    EventService.getEvents()
-      .then(response => {
-        this.events = response.data
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+    this.$store.dispatch('fetchEvents')
+  },
+  // mapStateを使って、storeの中のstateを参照して取得している
+  computed: mapState(['events'])
 }
 </script>
 
