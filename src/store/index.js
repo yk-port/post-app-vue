@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import EventService from '@/services/EventService'
+import * as notification from '@/store/modules/notification'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  modules: {
+    notification
+  },
+
   state: {
     user: 'Adam Jahr',
     categories: [
@@ -49,18 +54,22 @@ export default new Vuex.Store({
         commit('ADD_EVENT', event)
       })
     },
-    fetchEvents({ commit }, { perPage, page }) {
+    fetchEvents({ commit, dispatch }, { perPage, page }) {
       return EventService.getEvents(perPage, page)
         .then(response => {
           commit('SET_EVENTS', response.data)
           commit('SET_EVENTS_TOTAL', response.headers['x-total-count'])
         })
         .catch(error => {
-          console.log(error)
+          const notification = {
+            type: 'error',
+            message: `There was a problem creating your event: ${error.message}`
+          }
+          dispatch('notification/add', notification, { root: true })
         })
     },
-    fetchEvent({ commit }, id) {
-      const event = this.getters.getEventById(id)
+    fetchEvent({ commit, getters, dispatch }, id) {
+      const event = getters.getEventById(id)
 
       if (event) {
         commit('SET_EVENT', event)
@@ -70,13 +79,15 @@ export default new Vuex.Store({
             commit('SET_EVENT', response.data)
           })
           .catch(error => {
-            console.log(error)
+            const notification = {
+              type: 'error',
+              message: `There was a problem creating your event: ${error.message}`
+            }
+            dispatch('notification/remove', notification, { root: true })
           })
       }
     }
   },
-
-  modules: {},
 
   getters: {
     categoryLength: state => {
