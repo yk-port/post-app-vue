@@ -97,7 +97,7 @@ export default new Vuex.Store({
               type: 'error',
               message: `There was a problem creating your event: ${error.message}`
             }
-            dispatch('notification/add ', notification, { root: true })
+            dispatch('notification/add', notification, { root: true })
           })
       }
     }
