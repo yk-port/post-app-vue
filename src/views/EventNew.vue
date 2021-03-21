@@ -143,9 +143,7 @@ export default {
           })
           this.reset()
         })
-        .catch(() => {
-          console.log('Error!!')
-        })
+        .catch(() => {})
     },
     reset() {
       this.$refs.form.reset()

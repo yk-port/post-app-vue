@@ -49,10 +49,24 @@ export default new Vuex.Store({
   },
 
   actions: {
-    createEvent({ commit }, event) {
-      return EventService.postEvent(event).then(() => {
-        commit('ADD_EVENT', event)
-      })
+    createEvent({ commit, dispatch }, event) {
+      return EventService.postEvent(event)
+        .then(() => {
+          commit('ADD_EVENT', event)
+          const notification = {
+            type: 'success',
+            message: 'Your event has been created!'
+          }
+          dispatch('notification/add', notification, { root: true })
+        })
+        .catch(error => {
+          const notification = {
+            type: 'error',
+            message: `There was a problem creating your event: ${error.message}`
+          }
+          dispatch('notification/add', notification, { root: true })
+          throw error
+        })
     },
     fetchEvents({ commit, dispatch }, { perPage, page }) {
       return EventService.getEvents(perPage, page)
@@ -83,7 +97,7 @@ export default new Vuex.Store({
               type: 'error',
               message: `There was a problem creating your event: ${error.message}`
             }
-            dispatch('notification/remove', notification, { root: true })
+            dispatch('notification/add ', notification, { root: true })
           })
       }
     }
